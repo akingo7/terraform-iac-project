@@ -28,6 +28,12 @@ fi
 # ── Install Amazon EFS utilities ────────────────────────
 sudo yum install -y amazon-efs-utils
 
+if [[ "${PACKER_BUILD:-0}" == "1" ]]; then
+    echo "PACKER_BUILD detected; skipping runtime NGINX config that depends on live ALB DNS"
+    sudo systemctl enable nginx
+    exit 0
+fi
+
 # ── Write the main NGINX config ─────────────────────────
 sudo tee /etc/nginx/nginx.conf > /dev/null << 'NGINX_CONF'
 user nginx;

@@ -25,6 +25,7 @@ build {
   sources = ["source.amazon-ebs.terraform-wordpress-prj-19"]
 
   provisioner "shell" {
-    script = "../Terraform/wordpress.sh"
+    script = "${path.root}/../Terraform/wordpress.sh"
+    environment_vars = ["PACKER_BUILD=1"]
   }
 }

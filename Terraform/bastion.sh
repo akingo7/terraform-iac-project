@@ -14,13 +14,16 @@ sudo yum update -y
 sudo yum install -y \
   git \
   vim \
-  curl \
   wget \
   unzip \
   net-tools \
   telnet \
   htop \
   mariadb105   # MariaDB client to reach RDS from bastion
+
+if ! command -v curl &>/dev/null; then
+  sudo yum install -y curl --allowerasing
+fi
 
 # ── Install AWS CLI v2 (if not already present) ─────────
 if ! command -v aws &>/dev/null; then

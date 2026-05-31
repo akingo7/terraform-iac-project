@@ -47,6 +47,12 @@ sudo dnf install -y \
 # ── Install EFS utilities & MariaDB client ──────────────
 sudo yum install -y amazon-efs-utils mariadb105
 
+if [[ "${PACKER_BUILD:-0}" == "1" ]]; then
+  echo "PACKER_BUILD detected; skipping runtime WordPress EFS/RDS configuration"
+  sudo systemctl enable httpd
+  exit 0
+fi
+
 # ── Install AWS CLI v2 ──────────────────────────────────
 if ! command -v aws &>/dev/null; then
   curl -sL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip

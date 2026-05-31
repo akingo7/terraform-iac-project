@@ -25,6 +25,7 @@ build {
   sources = ["source.amazon-ebs.terraform-bastion-prj-19"]
 
   provisioner "shell" {
-    script = "../Terraform/bastion.sh"
+    script = "${path.root}/../Terraform/bastion.sh"
+    environment_vars = ["PACKER_BUILD=1"]
   }
 }
