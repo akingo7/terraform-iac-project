@@ -1,16 +1,3 @@
-packer {
-  required_plugins {
-    amazon = {
-      source  = "github.com/hashicorp/amazon"
-      version = ">= 1.0.0"
-    }
-  }
-}
-
-locals {
-  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
-}
-
 source "amazon-ebs" "terraform-bastion-prj-19" {
   ami_name      = "terraform-bastion-prj-19-${local.timestamp}"
   instance_type = "t2.micro"
