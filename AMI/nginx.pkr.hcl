@@ -25,7 +25,7 @@ build {
   sources = ["source.amazon-ebs.terraform-nginx-prj-19"]
 
   provisioner "shell" {
-    script = "${path.root}/../Terraform/nginx.sh"
+    script           = "${path.root}/../Terraform/nginx.sh"
     environment_vars = ["PACKER_BUILD=1"]
   }
 }
